@@ -1,23 +1,26 @@
 .appointment-item-container {
-  width: 25%;
+  width: 30%;
   border: 0.1rem solid #b5b7c4;
   border-radius: 0.8rem;
-  padding: 1rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .appointment-title-star-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .appointment-title {
   color: #171f46;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
@@ -35,5 +38,5 @@
 
 .appointment-formatted-date {
   color: #b5b7c4;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }

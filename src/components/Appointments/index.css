@@ -17,6 +17,7 @@
   justify-content: center;
   align-items: flex-start;
   background-color: #ffffff;
+  width: 90%;
 }
 
 .form-content-container {
@@ -37,6 +38,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0;
+  width: 100%;
 }
 
 .form-input-container {
@@ -104,7 +106,7 @@
 
 .appointments-data-display-header-title {
   color: #171f46;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .starred-appointments-filter-off-button {
