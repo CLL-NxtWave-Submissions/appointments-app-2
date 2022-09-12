@@ -86,8 +86,10 @@ export default class Appointments extends Component {
     this.setState(previousAppointmentsState => {
       const {isStarredAppointmentsFilterOn} = previousAppointmentsState
 
+      const toggledStarredAppointmentsFilterOnStatus = !isStarredAppointmentsFilterOn
+
       return {
-        isStarredAppointmentsFilterOn: !isStarredAppointmentsFilterOn,
+        isStarredAppointmentsFilterOn: toggledStarredAppointmentsFilterOnStatus,
       }
     })
   }
@@ -97,19 +99,19 @@ export default class Appointments extends Component {
       const {appointmentData} = previousAppointmentsState
       const {appointmentsList} = appointmentData
 
-      const starToggledAppointmentData = appointmentsList.find(
-        appointmentsListItem =>
-          appointmentsListItem.id === starToggledAppointmentId,
-      )
-      const updatedStarToggledAppointmentData = {
-        ...starToggledAppointmentData,
-        isStarred: !starToggledAppointmentData.isStarred,
-      }
+      const updatedAppointmentsList = appointmentsList.map(
+        appointmentsListItem => {
+          if (appointmentsListItem.id === starToggledAppointmentId) {
+            return {
+              ...appointmentsListItem,
+              isStarred: !appointmentsListItem.isStarred,
+            }
+          }
 
-      const updatedAppointmentsList = [
-        ...appointmentsList,
-        updatedStarToggledAppointmentData,
-      ]
+          return appointmentsListItem
+        },
+      )
+
       const updatedAppointmentData = {
         ...appointmentData,
         appointmentsList: updatedAppointmentsList,
@@ -121,6 +123,16 @@ export default class Appointments extends Component {
     })
   }
 
+  getStarredAppointments = () => {
+    const {appointmentData} = this.state
+    const {appointmentsList} = appointmentData
+
+    const starredAppointments = appointmentsList.filter(
+      appointmentsListItem => appointmentsListItem.isStarred,
+    )
+    return starredAppointments
+  }
+
   render() {
     const {appointmentData, isStarredAppointmentsFilterOn} = this.state
     const {
@@ -128,6 +140,10 @@ export default class Appointments extends Component {
       appointmentDate,
       appointmentsList,
     } = appointmentData
+
+    const currentListOfAppointments = isStarredAppointmentsFilterOn
+      ? this.getStarredAppointments()
+      : appointmentsList
 
     return (
       <div className="appointments-bg-container">
@@ -150,6 +166,7 @@ export default class Appointments extends Component {
                   placeholder="Title"
                   value={appointmentTitle}
                   onChange={this.onTitleChange}
+                  autoComplete="off"
                 />
 
                 <label className="form-input-label" htmlFor="dateInput">
@@ -198,7 +215,7 @@ export default class Appointments extends Component {
             </div>
 
             <ul className="appointments-data-container">
-              {appointmentsList.map(appointmentsListItem => (
+              {currentListOfAppointments.map(appointmentsListItem => (
                 <AppointmentItem
                   key={appointmentsListItem.id}
                   itemData={appointmentsListItem}

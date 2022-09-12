@@ -99,6 +99,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .appointments-data-display-header-title {
@@ -106,15 +107,16 @@
   font-size: 1.5rem;
 }
 
-.starred-appointments-filter-on-button {
+.starred-appointments-filter-off-button {
   color: #9897f0;
   border: 0.1rem solid #9897f0;
   background: inherit;
 }
 
-.starred-appointments-filter-off-button {
+.starred-appointments-filter-on-button {
   color: #ffffff;
   background-color: #9897f0;
+  border: none;
 }
 
 .starred-appointments-filter-on-button,
@@ -123,6 +125,8 @@
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 550;
+  cursor: pointer;
+  outline: none;
 }
 
 .appointments-data-container {
@@ -131,6 +135,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
